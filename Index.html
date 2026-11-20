@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magistral · Cronograma por objetivos · agosto–21 noviembre 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-700: #495057;
+  --gray-900: #212529;
+
+  --written: #1B4FCC;
+  --written-light: #EEF2FF;
+  --written-mid: #C7D4F8;
+
+  --practical: #0D7A5A;
+  --practical-light: #ECFDF5;
+  --practical-mid: #A7F3D0;
+
+  --milestone: #B45309;
+  --milestone-light: #FEF3C7;
+
+  --done-bg: #F0FDF4;
+  --done-border: #86EFAC;
+  --inprogress-bg: #FFFBEB;
+  --inprogress-border: #FCD34D;
+  --pending-bg: #F9FAFB;
+  --pending-border: #D1D5DB;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--gray-900);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background: var(--gray-900);
+  color: white;
+  padding: 28px 40px 24px;
+  border-bottom: 3px solid var(--written);
+  position: relative;
+}
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--written) 0 55%, var(--practical) 55% 100%);
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.header-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 6px;
+}
+.header-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.32;
+  max-width: 620px;
+}
+.header-objective {
+  margin-top: 10px;
+  max-width: 620px;
+  font-size: 12px;
+  color: var(--gray-300);
+  line-height: 1.55;
+  border-left: 2px solid var(--practical);
+  padding-left: 10px;
+}
+.header-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+.header-authors {
+  font-size: 13px;
+  color: var(--gray-300);
+  margin-bottom: 4px;
+}
+.header-period {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray-500);
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+.header-note {
+  font-size: 10px;
+  color: var(--gray-500);
+  margin-top: 10px;
+  max-width: 220px;
+  line-height: 1.4;
+  margin-left: auto;
+}
+
+/* ===== MILESTONE STRIP ===== */
+.milestone-strip {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--gray-200);
+  overflow-x: auto;
+}
+.milestone-chip {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px 18px;
+  border-right: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.milestone-chip:last-child { border-right: none; }
+.milestone-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--milestone);
+}
+.milestone-desc {
+  font-size: 11px;
+  color: var(--gray-700);
+}
+.milestone-week {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gray-500);
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.stat-cell {
+  padding: 16px 24px;
+  border-right: 1px solid var(--gray-200);
+  position: relative;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 4px;
+}
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.stat-value span { font-size: 13px; font-weight: 400; color: var(--gray-500); }
+.stat-bar {
+  margin-top: 6px;
+  height: 3px;
+  background: var(--gray-200);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  padding: 14px 40px;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.controls-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray-500);
+  margin-right: 4px;
+}
+.filter-btn {
+  border: 1.5px solid var(--gray-300);
+  background: white;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--gray-700);
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--gray-500); }
+.filter-btn.active { background: var(--gray-900); color: white; border-color: var(--gray-900); }
+.controls-sep { width: 1px; height: 20px; background: var(--gray-300); margin: 0 4px; }
+.reset-btn {
+  margin-left: auto;
+  border: 1.5px solid var(--gray-300);
+  background: white;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  color: var(--gray-500);
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+}
+.reset-btn:hover { color: #dc2626; border-color: #dc2626; }
+
+/* ===== GANTT ===== */
+.gantt-section {
+  padding: 0 40px 0;
+  border-bottom: 2px solid var(--gray-200);
+}
+.gantt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  width: 100%;
+  text-align: left;
+}
+.gantt-toggle:hover { color: var(--gray-700); }
+.gantt-toggle-icon { transition: transform 0.2s; font-size: 12px; }
+.gantt-toggle-icon.open { transform: rotate(180deg); }
+.gantt-content { display: none; padding-bottom: 20px; }
+.gantt-content.open { display: block; }
+
+.gantt-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.gantt-grid-cols { grid-template-columns: 230px repeat(16, 42px); }
+
+.gantt-header {
+  display: grid;
+  gap: 0;
+  margin-bottom: 8px;
+  min-width: max-content;
+}
+.gantt-week {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gray-500);
+  padding: 4px 2px 2px;
+  border-left: 1px solid var(--gray-200);
+  position: relative;
+}
+.gantt-week.milestone-week-marker { color: var(--milestone); font-weight: 700; }
+.gantt-week .mstag {
+  display: block;
+  font-size: 8px;
+  color: var(--milestone);
+  font-weight: 700;
+}
+.gantt-header .gantt-corner { font-size: 10px; color: var(--gray-400); font-family: var(--font-mono); }
+
+.gantt-row {
+  display: grid;
+  gap: 0;
+  margin-bottom: 3px;
+  align-items: center;
+  min-width: max-content;
+}
+.gantt-label {
+  font-size: 11px;
+  color: var(--gray-700);
+  padding-right: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: sticky;
+  left: 0;
+  background: white;
+}
+.gantt-cell {
+  border-left: 1px solid var(--gray-100);
+  height: 20px;
+  position: relative;
+}
+.gantt-cell.milestone-col::after {
+  content: "";
+  position: absolute;
+  top: -3px; bottom: -3px;
+  right: 0;
+  border-right: 1px dashed var(--milestone-light);
+}
+.gantt-bar {
+  position: absolute;
+  top: 3px;
+  height: 14px;
+  border-radius: 3px;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  font-size: 9px;
+  color: white;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gantt-bar.done { opacity: 1; }
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 60vh;
+}
+
+.track-column {
+  border-right: 2px solid var(--gray-200);
+  padding: 0;
+}
+.track-column:last-child { border-right: none; }
+
+.track-header {
+  padding: 16px 24px 12px;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+.track-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.track-label.written { color: var(--written); }
+.track-label.practical { color: var(--practical); }
+.track-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--gray-900);
+}
+.track-subtitle {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 2px;
+}
+.track-progress-bar {
+  height: 3px;
+  background: var(--gray-200);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.track-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.written-fill { background: var(--written); }
+.practical-fill { background: var(--practical); }
+
+/* ===== PHASE SECTION ===== */
+.phase-section {
+  border-bottom: 1px solid var(--gray-100);
+}
+.phase-header {
+  padding: 12px 24px 8px;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.phase-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--gray-700);
+  text-transform: uppercase;
+}
+.phase-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.phase-period {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gray-400);
+  letter-spacing: 0.5px;
+}
+.phase-count {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  background: var(--gray-200);
+  border-radius: 10px;
+  padding: 1px 7px;
+  color: var(--gray-600);
+}
+
+/* ===== TASK CARD ===== */
+.task-list { padding: 8px 16px; }
+.task-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: var(--radius);
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: background 0.12s;
+  border: 1.5px solid transparent;
+  position: relative;
+}
+.task-card:hover { background: var(--gray-50); }
+.task-card.done { background: var(--done-bg); border-color: var(--done-border); }
+.task-card.inprogress { background: var(--inprogress-bg); border-color: var(--inprogress-border); }
+.task-card.pending { background: transparent; border-color: transparent; }
+.task-card.hidden { display: none; }
+
+.task-check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.15s;
+  background: white;
+}
+.task-card.done .task-check { background: #16a34a; border-color: #16a34a; }
+.task-card.inprogress .task-check { border-color: #f59e0b; background: #fef3c7; }
+.check-icon { font-size: 10px; color: white; display: none; }
+.task-card.done .check-icon { display: block; }
+.task-card.inprogress .check-icon { display: block; color: #f59e0b; font-size: 8px; }
+
+.task-body { flex: 1; min-width: 0; }
+.task-name {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--gray-900);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+.task-card.done .task-name { color: var(--gray-500); text-decoration: line-through; text-decoration-color: var(--gray-400); }
+.task-detail {
+  font-size: 11px;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+.task-tags {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  border-radius: 4px;
+  padding: 1px 6px;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+}
+.tag.period { background: var(--gray-100); color: var(--gray-500); font-weight: 400; }
+
+.status-indicator {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 9px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+.task-card.done .status-indicator { color: #16a34a; }
+.task-card.inprogress .status-indicator { color: #d97706; }
+.task-card.pending .status-indicator { color: var(--gray-400); }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  padding: 20px 40px;
+  border-top: 2px solid var(--gray-200);
+  background: var(--gray-50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.footer-note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray-400);
+  text-align: right;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .main-content { grid-template-columns: 1fr; }
+  .track-column { border-right: none; border-bottom: 2px solid var(--gray-200); }
+  .stats-bar { grid-template-columns: 1fr; }
+  .header-top { flex-direction: column; }
+  .header-meta { text-align: left; }
+  .header-note { margin-left: 0; }
+  .gantt-section { padding: 0 16px; }
+  .controls { padding: 14px 16px; }
+  .milestone-strip { flex-wrap: nowrap; }
+}
+
+/* Print */
+@media print {
+  .controls, .gantt-toggle { display: none; }
+  .gantt-content { display: block !important; }
+  .main-content { grid-template-columns: 1fr 1fr; }
+}
+
+.track-column.dimmed { opacity: 0.35; pointer-events: none; }
+.task-card.status-hidden { display: none !important; }
+
+.gantt-scroll { overflow:auto; max-height:790px; border:1px solid var(--gray-200); }
+.timeline { min-width:1675px; }
+.time-row { display:grid; grid-template-columns:400px minmax(0,1fr); border-bottom:1px solid #e9ecef; min-height:44px; }
+.time-label { position:sticky; left:0; z-index:4; background:#fff; border-right:1px solid #dee2e6; padding:9px 13px; line-height:1.35; font-size:12px; }
+.time-label small { display:block; color:#607080; font-size:10px; margin-top:4px; }
+.time-label a { color:inherit; text-decoration:none; }
+.time-label a:hover { text-decoration:underline; }
+.time-strip { position:relative; min-height:44px; }
+.time-grid { display:grid; grid-template-columns:repeat(16,7fr) 1fr; height:100%; position:absolute; inset:0; pointer-events:none; }
+.time-grid i { border-right:1px solid #e9ecef; }
+.time-bar { position:absolute; top:11px; height:22px; border-radius:4px; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; white-space:nowrap; z-index:2; overflow:hidden; min-width:5px; }
+.time-today { position:absolute; top:0; bottom:0; width:2px; background:#c86424; z-index:3; pointer-events:none; }
+.time-head { position:sticky; top:0; z-index:8; background:#f1f3f5; }
+.time-head .time-label { background:#f1f3f5; font-weight:700; }
+.week-head { display:grid; grid-template-columns:repeat(16,7fr) 1fr; min-height:57px; }
+.week-head div { font:10px var(--font-mono); border-right:1px solid #ddd; text-align:center; padding:7px 1px; }
+.week-head small { display:block; font-size:9px; color:#607080; margin-top:5px; }
+.week-head .final-day { font-size:8px; padding-top:4px; writing-mode:vertical-rl; }
+.time-phase { background:#f6faf7; }
+.time-phase .time-label { background:#f6faf7; font-weight:700; }
+.time-phase.written .time-label { background:#f3f6ff; }
+.time-task .time-label { padding-left:24px; }
+.time-section { padding:9px 13px; font-size:11px; font-weight:700; letter-spacing:1px; background:#e9ecef; position:sticky; left:0; }
+.owner-control { display:flex; align-items:center; gap:7px; font-size:12px; color:#495057; }
+.owner-control select { padding:7px 9px; border:1px solid #ced4da; border-radius:6px; background:#fff; font:inherit; }
+.task-detail { color:#52616d; }
+.task-card { padding-right:73px; }
+.task-card.done .task-name { color:#243b31; text-decoration:none; }
+.task-card:focus-visible { outline:3px solid #1b4fcc; }
+.tag.owner { background:#e8effd; color:#254a8c; }
+.tag.support { background:#f4f4f4; color:#53606e; font-weight:400; }
+.task-product { color:#264e40; font-size:11px; margin-top:5px; }
+.phase-objective { font-size:12px; line-height:1.5; color:#4b5d68; padding:11px 24px 4px; background:#f8f9fa; }
+.phase-header { gap:12px; flex-wrap:wrap; }
+.header-note { max-width:350px; }
+.overall-note { font-size:11px; color:#596977; padding:0 40px 12px; }
+@media(max-width:700px) { .controls { gap:9px; } .overall-note { padding-left:20px; } .header-meta { width:100%; } }
+@media print { .time-task { break-inside:avoid; } .time-label { position:static; } .gantt-scroll { max-height:none; } .timeline { min-width:1400px; } }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-top">
+    <div>
+      <div class="header-badge">UTEC · Ingeniería Ambiental · AM5007 · Proyecto Final de Ing. Ambiental II · 2026-2</div>
+      <div class="header-title">Diseño de un sistema de contención de agua de contacto en medio subterráneo para el Proyecto Minero Magistral</div>
+      <div class="header-objective">Cronograma de los seis objetivos de la tesis. Geoquímica, hidrogeología y modelo conceptual hasta mediados de octubre; flujo, transporte y selección de contención durante octubre y noviembre.</div>
+    </div>
+    <div class="header-meta">
+      <div class="header-authors">Diego Mijahuanca Quispe · José Casas Tarazona</div>
+      <div class="header-period">01 AGOSTO → 21 NOVIEMBRE 2026</div>
+      <div class="header-note">Fechas de detalle propuestas a partir del reparto de trabajo indicado. Corte de seguimiento: 19 de noviembre. Estados editables.</div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MILESTONES ===== -->
+<div class="milestone-strip"><div class="milestone-chip"><span class="milestone-tag">31 AGO</span><span class="milestone-desc">Bases y fuentes</span><span class="milestone-week">Evidencia inicial</span></div><div class="milestone-chip"><span class="milestone-tag">30 SEP</span><span class="milestone-desc">Integración</span><span class="milestone-week">OE1–OE3</span></div><div class="milestone-chip"><span class="milestone-tag">16 OCT</span><span class="milestone-desc">Modelo conceptual</span><span class="milestone-week">Cierre OE1–OE3</span></div><div class="milestone-chip"><span class="milestone-tag">17 NOV</span><span class="milestone-desc">Pruebas y diseño</span><span class="milestone-week">OE4–OE6</span></div><div class="milestone-chip"><span class="milestone-tag">21 NOV</span><span class="milestone-desc">Entrega final</span><span class="milestone-week">Cierre del trabajo</span></div></div>
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-cell">
+    <div class="stat-label">Avance por tareas</div>
+    <div class="stat-value" id="totalPct">0<span>%</span></div>
+    <div class="stat-bar"><div class="stat-bar-fill" id="totalBar" style="background:var(--gray-700);width:0%"></div></div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Redacción y cierre de tesis</div>
+    <div class="stat-value" id="writtenPct">0<span>%</span></div>
+    <div class="stat-bar"><div class="stat-bar-fill written-fill" id="writtenBar" style="width:0%"></div></div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Desarrollo de los seis objetivos</div>
+    <div class="stat-value" id="practicalPct">0<span>%</span></div>
+    <div class="stat-bar"><div class="stat-bar-fill practical-fill" id="practicalBar" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="overall-note">El porcentaje pondera cada tarea por igual y asigna 50 % a «En curso». Es una estimación de seguimiento editable. Diego lidera geoquímica, hidrogeología, ML, PEST++, plumas y contención. José lidera hidrología, modelo conceptual, primeras simulaciones y economía.</div>
+<!-- ===== FILTERS ===== -->
+<div class="controls">
+  <span class="controls-label">Estado</span>
+  <button class="filter-btn active" data-val="all" onclick="setFilter('all',this)">Todos</button>
+  <button class="filter-btn" data-val="pending" onclick="setFilter('pending',this)">Pendiente</button>
+  <button class="filter-btn" data-val="inprogress" onclick="setFilter('inprogress',this)">En curso</button>
+  <button class="filter-btn" data-val="done" onclick="setFilter('done',this)">Completado</button>
+  <label class="owner-control">Responsable <select id="ownerFilter" onchange="setOwner(this.value)"><option value="all">Todos</option><option value="Diego">Diego</option><option value="José">José</option><option value="Ambos">Ambos</option></select></label>
+<label class="owner-control"><input type="checkbox" id="detailToggle" checked onchange="renderGantt()"> Mostrar actividades</label>
+<button class="reset-btn" onclick="resetAll()">↺ Restaurar estados iniciales</button>
+</div>
+
+<!-- ===== GANTT ===== -->
+<div class="gantt-section" id="ganttSection">
+  <button class="gantt-toggle" onclick="toggleGantt()">
+    <span class="gantt-toggle-icon" id="ganttIcon">▲</span>
+    CRONOGRAMA · 01 AGO — 21 NOV
+  </button>
+  <div class="gantt-content open" id="ganttContent">
+    <div class="gantt-scroll">
+      <div id="ganttRows" class="timeline"></div>
+    </div>
+    <div style="font-size:10px;color:var(--gray-400);font-family:var(--font-mono);margin-top:10px;">
+      <span style="color:var(--written)">■</span> Redacción &nbsp;·&nbsp; <span style="color:var(--practical)">■</span> Práctica &nbsp;·&nbsp; <span style="color:var(--milestone)">▲</span> Fecha de cierre técnico &nbsp;·&nbsp; Desliza para recorrer las 17 semanas. La última comprende solo el 21 de noviembre.
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN TRACKS ===== -->
+<div class="main-content" id="mainContent">
+
+  <!-- WRITTEN TRACK -->
+  <div class="track-column" id="writtenCol">
+    <div class="track-header">
+      <div class="track-label written">AVANCE ESCRITO</div>
+      <div class="track-title">Redacción del Informe</div>
+      <div class="track-subtitle">Capítulos 1–10 · Revisión final hasta el 21 de noviembre</div>
+      <div class="track-progress-bar"><div class="track-progress-fill written-fill" id="writtenTrackBar" style="width:0%"></div></div>
+    </div>
+    <div id="writtenTasks"></div>
+  </div>
+
+  <!-- PRACTICAL TRACK -->
+  <div class="track-column" id="practicalCol">
+    <div class="track-header">
+      <div class="track-label practical">AVANCE PRÁCTICO</div>
+      <div class="track-title">Objetivos y productos técnicos</div>
+      <div class="track-subtitle">Geoquímica → Hidrogeología → Modelo conceptual → Flujo → Transporte → Contención</div>
+      <div class="track-progress-bar"><div class="track-progress-fill practical-fill" id="practicalTrackBar" style="width:0%"></div></div>
+    </div>
+    <div id="practicalTasks"></div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-legend">
+    <div class="legend-item"><div style="width:10px;height:10px;border-radius:2px;background:#16a34a"></div> Completado</div>
+    <div class="legend-item"><div style="width:10px;height:10px;border-radius:2px;background:#f59e0b"></div> En curso</div>
+    <div class="legend-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--gray-200)"></div> Pendiente</div>
+    <div style="width:1px;height:16px;background:var(--gray-300);margin:0 4px"></div>
+    <div class="legend-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--written)"></div> Redacción</div>
+    <div class="legend-item"><div style="width:10px;height:10px;border-radius:2px;background:var(--practical)"></div> Práctica</div>
+  </div>
+  <div class="footer-note">
+    Haz clic en una tarea para cambiar su estado<br>
+    Estado guardado en este navegador · Magistral 2026
+  </div>
+</footer>
+
+<script>
+const PHASES = {
+  "practical": [
+    {
+      "id": "oe1",
+      "title": "OE1 · Caracterización geoquímica",
+      "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro.",
+      "tasks": [
+        {
+          "id": "oe1_1",
+          "name": "Revisar los ensayos del estudio geoquímico",
+          "detail": "Inventariar tablas, muestras, unidades y límites de detección del anexo NOLABS.",
+          "start": "2026-08-03",
+          "end": "2026-08-14",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Inventario de ensayos y fuentes verificadas.",
+          "status": "done",
+          "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro."
+        },
+        {
+          "id": "oe1_2",
+          "name": "Relacionar mineralogía y potencial ácido",
+          "detail": "Interpretar sulfuros, neutralización y unidades geoambientales por componente.",
+          "start": "2026-08-10",
+          "end": "2026-08-28",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Matriz de potencial ácido y liberación en drenaje neutro.",
+          "status": "done",
+          "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro."
+        },
+        {
+          "id": "oe1_3",
+          "name": "Integrar hidroquímica y línea base",
+          "detail": "Normalizar datos de piezómetros y manantiales y conservar la trazabilidad espacial.",
+          "start": "2026-08-24",
+          "end": "2026-09-11",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Base hidroquímica con unidades y coordenadas.",
+          "status": "done",
+          "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro."
+        },
+        {
+          "id": "oe1_4",
+          "name": "Priorizar especies y revisar con PHREEQC",
+          "detail": "Contrastar movilidad, especiación y disponibilidad de concentraciones de fuente para GWT.",
+          "start": "2026-09-07",
+          "end": "2026-09-25",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Decisión sustentada de Mo, Cu y sulfato; Se retenido para seguimiento.",
+          "status": "done",
+          "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro."
+        },
+        {
+          "id": "oe1_5",
+          "name": "Definir términos de fuente operativos",
+          "detail": "Vincular concentraciones y huellas de tajo, botadero, stockpile y relaves; fijar calendario y supuestos.",
+          "start": "2026-09-21",
+          "end": "2026-10-09",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Tablas de fuente para 2026–2042 y registro de supuestos.",
+          "status": "done",
+          "objective": "Interpretar la evidencia geoquímica para priorizar contaminantes y fuentes, diferenciando el potencial de acidez de la liberación en drenaje neutro."
+        }
+      ],
+      "start": "2026-08-03",
+      "end": "2026-10-09"
+    },
+    {
+      "id": "oe2",
+      "title": "OE2 · Caracterización hidrogeológica",
+      "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada.",
+      "tasks": [
+        {
+          "id": "oe2_1",
+          "name": "Integrar geología, piezometría e infraestructura",
+          "detail": "Verificar sistemas de coordenadas, geometrías, pozos, fallas, secciones y cartografía.",
+          "start": "2026-08-03",
+          "end": "2026-08-21",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capas SIG verificadas e inventario de observaciones.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        },
+        {
+          "id": "oe2_2",
+          "name": "Organizar la hidroestratigrafía y propiedades",
+          "detail": "Relacionar ensayos hidráulicos, secciones y profundidad de circulación.",
+          "start": "2026-08-17",
+          "end": "2026-09-04",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Base de unidades y parámetros hidráulicos.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        },
+        {
+          "id": "oe2_3",
+          "name": "Evaluar RF y ElasticNet para propiedades",
+          "detail": "Comparar estimaciones auxiliares de conductividad y registrar sus límites frente a los ensayos.",
+          "start": "2026-08-24",
+          "end": "2026-09-18",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Estimaciones espaciales y contraste con evidencia hidrogeológica.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        },
+        {
+          "id": "oe2_4",
+          "name": "Preparar clima y balance hídrico de referencia",
+          "detail": "Revisar precipitación, temperatura y balance Thornthwaite–Mather frente a la MEIA-d.",
+          "start": "2026-08-17",
+          "end": "2026-09-11",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Series climáticas y recarga de referencia.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        },
+        {
+          "id": "oe2_5",
+          "name": "Integrar BASD-CMIP6-PE y SoilGrids",
+          "detail": "Aplicar diez modelos SSP5-8.5 y retención volumétrica de agua al balance distribuido.",
+          "start": "2026-09-07",
+          "end": "2026-10-09",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Recarga distribuida por escenario y mes.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        },
+        {
+          "id": "oe2_6",
+          "name": "Consolidar geometría y minado progresivo",
+          "detail": "Verificar DEM, superficie del tajo y cambios temporales para la implementación del flujo.",
+          "start": "2026-09-21",
+          "end": "2026-10-14",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Geometría y calendario de excavación preparados.",
+          "status": "done",
+          "objective": "Caracterizar la hidroestratigrafía, las estructuras, la infraestructura y la recarga a partir de información secundaria verificada."
+        }
+      ],
+      "start": "2026-08-03",
+      "end": "2026-10-14"
+    },
+    {
+      "id": "oe3",
+      "title": "OE3 · Modelo conceptual",
+      "objective": "Construir el modelo conceptual de fuentes, rutas y receptores.",
+      "tasks": [
+        {
+          "id": "oe3_1",
+          "name": "Definir fuentes, rutas y receptores",
+          "detail": "Relacionar huellas y carga potencial con quebradas, manantiales, laguna y bofedales.",
+          "start": "2026-08-24",
+          "end": "2026-09-11",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Esquema inicial de fuentes–rutas–receptores.",
+          "status": "done",
+          "objective": "Construir el modelo conceptual de fuentes, rutas y receptores."
+        },
+        {
+          "id": "oe3_2",
+          "name": "Definir límites y conexiones del sistema",
+          "detail": "Delimitar la cuenca, distinguir flujo somero y profundo y revisar recarga y descarga.",
+          "start": "2026-09-07",
+          "end": "2026-09-25",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Dominio conceptual y condiciones de contorno.",
+          "status": "done",
+          "objective": "Construir el modelo conceptual de fuentes, rutas y receptores."
+        },
+        {
+          "id": "oe3_3",
+          "name": "Contrastar hipótesis con cortes y piezometría",
+          "detail": "Examinar circulación en roca fracturada, drenajes, tajo y conexiones alternativas.",
+          "start": "2026-09-21",
+          "end": "2026-10-07",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Secciones conceptuales e hipótesis documentadas.",
+          "status": "done",
+          "objective": "Construir el modelo conceptual de fuentes, rutas y receptores."
+        },
+        {
+          "id": "oe3_4",
+          "name": "Cerrar el modelo conceptual y sus insumos",
+          "detail": "Verificar consistencia entre fuentes geoquímicas, geometría y balance de agua.",
+          "start": "2026-10-05",
+          "end": "2026-10-16",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Modelo conceptual y base de entrada revisados.",
+          "status": "done",
+          "objective": "Construir el modelo conceptual de fuentes, rutas y receptores."
+        }
+      ],
+      "start": "2026-08-24",
+      "end": "2026-10-16"
+    },
+    {
+      "id": "oe4",
+      "title": "OE4 · Modelo de flujo",
+      "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6.",
+      "tasks": [
+        {
+          "id": "oe4_1",
+          "name": "Implementar MODFLOW 6 y ejecutar el caso inicial",
+          "detail": "Preparar malla DISV, tres capas, recarga, propiedades y drenes; ejecutar primeras pruebas.",
+          "start": "2026-10-01",
+          "end": "2026-10-16",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Modelo base de flujo y listados iniciales.",
+          "status": "done",
+          "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6."
+        },
+        {
+          "id": "oe4_2",
+          "name": "Preparar observaciones y parámetros PEST++",
+          "detail": "Depurar 108 niveles y definir multiplicadores de conductividad y función objetivo.",
+          "start": "2026-10-12",
+          "end": "2026-10-23",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Archivos de calibración y criterios de aceptación.",
+          "status": "done",
+          "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6."
+        },
+        {
+          "id": "oe4_3",
+          "name": "Calibrar y corregir estabilidad numérica",
+          "detail": "Ajustar parámetros, revisar residuos y balance y documentar decisiones de convergencia.",
+          "start": "2026-10-19",
+          "end": "2026-11-06",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Modelo calibrado; NRMS documentado de 8,89 %.",
+          "status": "done",
+          "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6."
+        },
+        {
+          "id": "oe4_4",
+          "name": "Simular flujo transitorio 2026–2042",
+          "detail": "Aplicar excavación progresiva y recarga mensual para diez modelos climáticos.",
+          "start": "2026-10-26",
+          "end": "2026-11-10",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Cargas y presupuestos transitorios verificados.",
+          "status": "done",
+          "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6."
+        },
+        {
+          "id": "oe4_5",
+          "name": "Interpretar descensos y balance de agua",
+          "detail": "Distinguir señal del clima y del tajo y revisar incertidumbre local.",
+          "start": "2026-11-06",
+          "end": "2026-11-13",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Mapas, balances y diagnóstico de flujo por sector.",
+          "status": "done",
+          "objective": "Implementar, verificar y calibrar el modelo de flujo subterráneo en MODFLOW 6."
+        }
+      ],
+      "start": "2026-10-01",
+      "end": "2026-11-13"
+    },
+    {
+      "id": "oe5",
+      "title": "OE5 · Transporte y zonas críticas",
+      "objective": "Evaluar el transporte de las especies priorizadas sin contención, identificar las zonas críticas y estimar en ellas el desempeño de los tres diseños conceptuales.",
+      "tasks": [
+        {
+          "id": "oe5_1",
+          "name": "Preparar acoplamiento FMI y fuentes GWT",
+          "detail": "Asociar caudales y cargas de flujo con fuentes de Mo, Cu y sulfato.",
+          "start": "2026-10-19",
+          "end": "2026-10-30",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Entradas GWT y correspondencia de fuentes.",
+          "status": "done",
+          "objective": "Evaluar el transporte de las especies priorizadas sin contención, identificar las zonas críticas y estimar en ellas el desempeño de los tres diseños conceptuales."
+        },
+        {
+          "id": "oe5_2",
+          "name": "Ejecutar transporte operativo y resolver convergencia",
+          "detail": "Correr tres modelos climáticos, tres especies y dos condiciones del Botadero Norte.",
+          "start": "2026-11-02",
+          "end": "2026-11-12",
+          "owner": "Diego",
+          "support": "José",
+          "product": "18 casos de transporte hasta diciembre de 2042.",
+          "status": "done",
+          "objective": "Evaluar el transporte de las especies priorizadas sin contención, identificar las zonas críticas y estimar en ellas el desempeño de los tres diseños conceptuales."
+        },
+        {
+          "id": "oe5_3",
+          "name": "Analizar plumas por capa y balance de masa",
+          "detail": "Comparar extensión, incremento de concentración, salida a drenes y almacenamiento de masa.",
+          "start": "2026-11-10",
+          "end": "2026-11-14",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Mapas de pluma y balance máximo reportado de 0,04 %.",
+          "status": "done",
+          "objective": "Evaluar el transporte de las especies priorizadas sin contención, identificar las zonas críticas y estimar en ellas el desempeño de los tres diseños conceptuales."
+        },
+        {
+          "id": "oe5_4",
+          "name": "Refinar zonas críticas y comparar tecnologías",
+          "detail": "Contrastar rutas preminado y operativas y aplicar criterios de profundidad, captura y tratamiento.",
+          "start": "2026-11-12",
+          "end": "2026-11-16",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Frente de presa priorizado y cribado BH / BI / PE.",
+          "status": "done",
+          "objective": "Evaluar el transporte de las especies priorizadas sin contención, identificar las zonas críticas y estimar en ellas el desempeño de los tres diseños conceptuales."
+        }
+      ],
+      "start": "2026-10-19",
+      "end": "2026-11-16"
+    },
+    {
+      "id": "oe6",
+      "title": "OE6 · Selección y diseño de contención",
+      "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad.",
+      "tasks": [
+        {
+          "id": "oe6_1",
+          "name": "Dimensionar y ubicar la línea de extracción",
+          "detail": "Definir pozos profundos, caudal, colector, retorno al pond y red de control.",
+          "start": "2026-11-10",
+          "end": "2026-11-16",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Planos de siete pozos y configuración de 44 L/s.",
+          "status": "done",
+          "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad."
+        },
+        {
+          "id": "oe6_2",
+          "name": "Verificar captura e iterar el caudal",
+          "detail": "Comparar sin pozos, 30 L/s y 44 L/s en régimen permanente; revisar abatimiento y secciones.",
+          "start": "2026-11-13",
+          "end": "2026-11-17",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Prueba hidráulica de la línea y condiciones de desempeño.",
+          "status": "done",
+          "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad."
+        },
+        {
+          "id": "oe6_3",
+          "name": "Costear la solución y analizar sensibilidad",
+          "detail": "Estimar CAPEX, OPEX, VAC, CAUE y Monte Carlo; contrastar alternativas bajo restricciones.",
+          "start": "2026-11-12",
+          "end": "2026-11-17",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Evaluación económico-financiera y costos trazables.",
+          "status": "done",
+          "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad."
+        },
+        {
+          "id": "oe6_4",
+          "name": "Integrar seguridad, impactos y condiciones de implementación",
+          "detail": "Relacionar bombeo, descarga natural, IPERC, AMFE y verificación de tratamiento y recirculación.",
+          "start": "2026-11-16",
+          "end": "2026-11-19",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Evaluación de riesgos y condiciones de implementación.",
+          "status": "inprogress",
+          "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad."
+        },
+        {
+          "id": "oe6_5",
+          "name": "Consolidar la alternativa final y verificar trazabilidad",
+          "detail": "Cruzar planos, resultados, costos y restricciones con ambos autores.",
+          "start": "2026-11-18",
+          "end": "2026-11-20",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Propuesta final coherente con el alcance de verificación.",
+          "status": "inprogress",
+          "objective": "Seleccionar y documentar una propuesta conceptual según criterios de protección, desempeño y factibilidad."
+        }
+      ],
+      "start": "2026-11-10",
+      "end": "2026-11-20"
+    }
+  ],
+  "written": [
+    {
+      "id": "r1",
+      "title": "Fundamentación y antecedentes",
+      "objective": "OE1–OE3",
+      "tasks": [
+        {
+          "id": "r1_1",
+          "name": "Actualizar introducción, problema y seis objetivos",
+          "detail": "Alinear el título y la justificación con el diseño conceptual de contención de agua de contacto.",
+          "start": "2026-08-03",
+          "end": "2026-09-11",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capítulo 1 y alcance del trabajo.",
+          "status": "done",
+          "objective": "OE1–OE3"
+        },
+        {
+          "id": "r1_2",
+          "name": "Redactar revisión crítica y marco teórico",
+          "detail": "Integrar geoquímica, hidrogeología, ML auxiliar, flujo, transporte y tres métodos de contención.",
+          "start": "2026-08-10",
+          "end": "2026-09-25",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capítulos 2 y 3 con referencias verificadas.",
+          "status": "done",
+          "objective": "OE1–OE3"
+        },
+        {
+          "id": "r1_3",
+          "name": "Integrar marco referencial y restricciones",
+          "detail": "Sistematizar la MEIA-d, infraestructura, receptores, estándares y limitaciones del sitio.",
+          "start": "2026-08-24",
+          "end": "2026-10-09",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capítulo 4 y anexos de soporte.",
+          "status": "done",
+          "objective": "OE1–OE3"
+        },
+        {
+          "id": "r1_4",
+          "name": "Documentar balance hídrico y modelo conceptual",
+          "detail": "Explicar recarga, BASD-CMIP6-PE, SoilGrids y fuentes–rutas–receptores.",
+          "start": "2026-09-14",
+          "end": "2026-10-16",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Memorias hidrológicas y secciones conceptuales.",
+          "status": "done",
+          "objective": "OE1–OE3"
+        }
+      ],
+      "start": "2026-08-03",
+      "end": "2026-10-16"
+    },
+    {
+      "id": "r2",
+      "title": "Metodología y diseño tecnológico",
+      "objective": "OE4–OE6",
+      "tasks": [
+        {
+          "id": "r2_1",
+          "name": "Alinear metodología con los seis objetivos",
+          "detail": "Actualizar actividades, dependencias, productos, verificaciones y proceso iterativo.",
+          "start": "2026-10-01",
+          "end": "2026-10-16",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Capítulo 5 y matriz de trazabilidad.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        },
+        {
+          "id": "r2_2",
+          "name": "Redactar flujo, calibración y evolución temporal",
+          "detail": "Describir MODFLOW 6, PEST++, observaciones, minado y simulación transitoria.",
+          "start": "2026-10-19",
+          "end": "2026-11-10",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Métodos y memorias de flujo y calibración.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        },
+        {
+          "id": "r2_3",
+          "name": "Documentar dimensionamiento e integración de contención",
+          "detail": "Redactar selección de pozos, equipos, conducción, recirculación y control.",
+          "start": "2026-11-10",
+          "end": "2026-11-17",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capítulo 6 y planos de ingeniería conceptual.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        }
+      ],
+      "start": "2026-10-01",
+      "end": "2026-11-17"
+    },
+    {
+      "id": "r3",
+      "title": "Resultados, economía e impactos",
+      "objective": "OE4–OE6",
+      "tasks": [
+        {
+          "id": "r3_1",
+          "name": "Redactar resultados de flujo y clima",
+          "detail": "Presentar balances, descensos, escenarios climáticos y límites de calibración.",
+          "start": "2026-11-05",
+          "end": "2026-11-13",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Resultados de flujo del capítulo 7.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        },
+        {
+          "id": "r3_2",
+          "name": "Redactar geoquímica, plumas y captura",
+          "detail": "Vincular especies, fuentes, transporte y prueba hidráulica con las decisiones de diseño.",
+          "start": "2026-11-10",
+          "end": "2026-11-17",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Resultados del OE1, OE5 y OE6.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        },
+        {
+          "id": "r3_3",
+          "name": "Redactar análisis económico-financiero",
+          "detail": "Integrar costos, sensibilidad, comparación y límites de estimación.",
+          "start": "2026-11-12",
+          "end": "2026-11-17",
+          "owner": "José",
+          "support": "Diego",
+          "product": "Capítulo 8 y memoria económica.",
+          "status": "done",
+          "objective": "OE4–OE6"
+        },
+        {
+          "id": "r3_4",
+          "name": "Redactar seguridad e impactos ambientales",
+          "detail": "Explicar riesgos de la obra, abatimiento, manejo y continuidad operativa.",
+          "start": "2026-11-15",
+          "end": "2026-11-19",
+          "owner": "Diego",
+          "support": "José",
+          "product": "Capítulo 9 y matrices de evaluación.",
+          "status": "inprogress",
+          "objective": "OE4–OE6"
+        }
+      ],
+      "start": "2026-11-05",
+      "end": "2026-11-19"
+    },
+    {
+      "id": "r4",
+      "title": "Cierre y entrega final",
+      "objective": "Integración",
+      "tasks": [
+        {
+          "id": "r4_1",
+          "name": "Cerrar conclusiones y recomendaciones",
+          "detail": "Sintetizar logro por objetivo, restricciones y alcance real de la validación.",
+          "start": "2026-11-17",
+          "end": "2026-11-20",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Capítulo 10 revisado por los dos autores.",
+          "status": "inprogress",
+          "objective": "Integración"
+        },
+        {
+          "id": "r4_2",
+          "name": "Revisar referencias, anexos y formato",
+          "detail": "Verificar IEEE, numeración, unidades, remisiones, planos y consistencia de cifras.",
+          "start": "2026-11-18",
+          "end": "2026-11-20",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Documento y anexos integrados.",
+          "status": "inprogress",
+          "objective": "Integración"
+        },
+        {
+          "id": "r4_3",
+          "name": "Preparar sustentación y ensayo conjunto",
+          "detail": "Consolidar diapositivas y guion y ensayar explicación de resultados, costos y limitaciones.",
+          "start": "2026-11-19",
+          "end": "2026-11-21",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Presentación y ensayo de exposición.",
+          "status": "inprogress",
+          "objective": "Integración"
+        },
+        {
+          "id": "r4_4",
+          "name": "Cerrar el informe y entregar el portafolio",
+          "detail": "Revisión final del paquete de tesis y archivos de respaldo.",
+          "start": "2026-11-21",
+          "end": "2026-11-21",
+          "owner": "Ambos",
+          "support": "Revisión conjunta",
+          "product": "Entrega de cierre del 21 de noviembre.",
+          "status": "pending",
+          "objective": "Integración"
+        }
+      ],
+      "start": "2026-11-17",
+      "end": "2026-11-21"
+    }
+  ]
+};
+const START=Date.UTC(2026,7,1), END=Date.UTC(2026,10,21), DAY=86400000, DAYS=114-1;
+const STORAGE='magistral_gantt_oe_actuales_2026_v1';
+const allTasks=Object.values(PHASES).flatMap(group=>group.flatMap(phase=>phase.tasks));
+const TASKS=new Map(allTasks.map(t=>[t.id,t]));
+const defaultStates=Object.fromEntries(allTasks.map(t=>[t.id,t.status]));
+let taskStatus={};
+let statusFilter='all';
+let ownerFilter='all';
+const escaped=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dateText=value=>new Date(value+'T00:00:00Z').toLocaleDateString('es-PE',{day:'2-digit',month:'short',timeZone:'UTC'});
+function loadState(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE)||'{}');
+    for(const [id,value] of Object.entries(saved)){
+      if(TASKS.has(id)&&['pending','inprogress','done'].includes(value)) taskStatus[id]=value;
+    }
+  }catch(e){taskStatus={};}
+}
+function saveState(){try{localStorage.setItem(STORAGE,JSON.stringify(taskStatus));}catch(e){}}
+function getStatus(id){return taskStatus[id]||defaultStates[id]||'pending';}
+function cycleStatus(id){
+  if(!TASKS.has(id))return;
+  const values=['pending','inprogress','done'];
+  taskStatus[id]=values[(values.indexOf(getStatus(id))+1)%values.length];
+  saveState();render();
+}
+function resetAll(){
+  if(!confirm('¿Restaurar los estados iniciales de esta planificación?'))return;
+  taskStatus={};saveState();render();
+}
+function setFilter(value,button){
+  statusFilter=value;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  button.classList.add('active');render();
+}
+function setOwner(value){ownerFilter=value;render();}
+function taskVisible(t){
+  const owner=ownerFilter==='all'||t.owner===ownerFilter||(t.owner==='Ambos'&&ownerFilter!=='Ambos');
+  return owner&&(statusFilter==='all'||getStatus(t.id)===statusFilter);
+}
+function score(t){return getStatus(t.id)==='done'?1:getStatus(t.id)==='inprogress'?.5:0;}
+function progress(tasks){return tasks.length?Math.round(tasks.reduce((sum,t)=>sum+score(t),0)/tasks.length*100):0;}
+function updateStats(){
+  for(const [name,tasks] of [['total',allTasks],['written',PHASES.written.flatMap(p=>p.tasks)],['practical',PHASES.practical.flatMap(p=>p.tasks)]]){
+    const pct=progress(tasks);
+    document.getElementById(name+'Pct').innerHTML=pct+'<span>%</span>';
+    document.getElementById(name+'Bar').style.width=pct+'%';
+    if(name!=='total')document.getElementById(name+'TrackBar').style.width=pct+'%';
+  }
+}
+function statusLabel(status){return {pending:'PENDIENTE',inprogress:'EN CURSO',done:'LISTO'}[status];}
+function renderTracks(){
+  for(const track of ['written','practical']){
+    const container=document.getElementById(track+'Tasks');
+    container.innerHTML=PHASES[track].map(phase=>{
+      const tasks=phase.tasks.filter(taskVisible);
+      if(!tasks.length)return '';
+      return '<section class="phase-section" id="phase_'+phase.id+'"><div class="phase-header"><div class="phase-title">'+escaped(phase.title)+'</div><span class="phase-period">'+dateText(phase.start)+' — '+dateText(phase.end)+'</span></div><p class="phase-objective">'+escaped(phase.objective)+'</p><div class="task-list">'+tasks.map(t=>{
+        const status=getStatus(t.id);
+        return '<div class="task-card '+status+'" id="card_'+t.id+'" role="button" tabindex="0" aria-label="'+escaped(t.name+' · '+statusLabel(status)+'. Cambiar estado')+'" onclick="cycleStatus(\''+t.id+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();cycleStatus(\''+t.id+'\')}"><div class="task-check"><span class="check-icon">'+(status==='done'?'✓':'◐')+'</span></div><div class="task-body"><div class="task-name">'+escaped(t.name)+'</div><div class="task-detail">'+escaped(t.detail)+'</div><div class="task-product"><strong>Producto</strong> · '+escaped(t.product)+'</div><div class="task-tags"><span class="tag period">'+dateText(t.start)+' → '+dateText(t.end)+'</span><span class="tag owner">Responsable · '+escaped(t.owner)+'</span><span class="tag support">Apoyo · '+escaped(t.support)+'</span></div></div><span class="status-indicator">'+statusLabel(status)+'</span></div>';
+      }).join('')+'</div></section>';
+    }).join('');
+  }
+}
+function placement(t){
+  return {left:(Date.parse(t.start+'T00:00:00Z')-START)/DAY/DAYS*100,
+          width:((Date.parse(t.end+'T00:00:00Z')-Date.parse(t.start+'T00:00:00Z'))/DAY+1)/DAYS*100};
+}
+const grid=()=>'<div class="time-grid">'+Array.from({length:17},()=>'<i></i>').join('')+'</div>';
+function timeBar(task,summary,track){
+  const p=placement(task);
+  const pct=summary?progress(task.tasks):null;
+  const color=track==='written'?'#1B4FCC':task.id.startsWith('oe6')?'#075640':'#0D7A5A';
+  const title=summary?task.title:task.name+' · '+task.owner+' · '+dateText(task.start)+'–'+dateText(task.end);
+  return '<div class="time-strip">'+grid()+'<div class="time-bar" title="'+escaped(title)+'" style="left:'+p.left+'%;width:'+p.width+'%;background:'+color+';opacity:'+(summary?1:getStatus(task.id)==='pending'?.35:getStatus(task.id)==='inprogress'?.65:1)+'">'+(summary?pct+'%':p.width>6?escaped(task.owner):'')+'</div><i class="time-today" style="left:'+((Date.UTC(2026,10,19)-START)/DAY/DAYS*100)+'%" title="Corte 19 nov"></i></div>';
+}
+function renderGantt(){
+  let html='<div class="time-row time-head"><div class="time-label">OBJETIVO / ACTIVIDAD <small>Responsable y fechas · corte 19 nov</small></div><div class="week-head">';
+  for(let week=0;week<17;week++){
+    const start=new Date(START+week*7*DAY);
+    const end=new Date(Math.min(END,START+(week*7+6)*DAY));
+    const month=start.toLocaleDateString('es-PE',{month:'short',timeZone:'UTC'});
+    html+='<div class="'+(week===16?'final-day':'')+'">S'+String(week+1).padStart(2,'0')+'<small>'+start.getUTCDate()+(week===16?'':'–'+end.getUTCDate())+' '+month+'</small></div>';
+  }
+  html+='</div></div>';
+  const details=document.getElementById('detailToggle').checked;
+  for(const track of ['practical','written']){
+    html+='<div class="time-section">'+(track==='practical'?'DESARROLLO DE LOS OBJETIVOS ESPECÍFICOS':'REDACCIÓN Y CIERRE')+'</div>';
+    for(const phase of PHASES[track]){
+      const tasks=phase.tasks.filter(taskVisible);
+      if(!tasks.length)continue;
+      const summary={...phase,tasks};
+      html+='<div class="time-row time-phase '+track+'"><div class="time-label"><a href="#phase_'+phase.id+'">'+escaped(phase.title)+'</a><small>'+dateText(phase.start)+' — '+dateText(phase.end)+'</small></div>'+timeBar(summary,true,track)+'</div>';
+      if(details){
+        for(const task of tasks){
+          html+='<div class="time-row time-task"><div class="time-label"><a href="#card_'+task.id+'">'+escaped(task.name)+'</a><small>'+escaped(task.owner)+' · '+dateText(task.start)+' — '+dateText(task.end)+'</small></div>'+timeBar(task,false,track)+'</div>';
+        }
+      }
+    }
+  }
+  document.getElementById('ganttRows').innerHTML=html;
+}
+function toggleGantt(){
+  const content=document.getElementById('ganttContent');
+  content.classList.toggle('open');
+  document.getElementById('ganttIcon').textContent=content.classList.contains('open')?'▲':'▼';
+}
+function render(){renderTracks();renderGantt();updateStats();}
+loadState();render();
+
+</script>
+</body>
+</html>
